@@ -8,6 +8,24 @@
 #
 ###################################################################
  
+# import requests and bs4
+import requests as rq
+from bs4 import BeautifulSoup as bs
 
 # ask the user for the user_name
-user_name = input("Enter the repository username : ")
+github_user_name = input("Enter the repository username : ")
+
+url = 'https://github.com/'+github_user_name
+
+r = rq.get(url)
+soup = bs(r.content, 'html.parser')
+
+target = github_user_name+'?tab=followers'
+
+followers = soup.findAll(github_user_name)
+print(followers)
+
+
+# github_user_name+'?tab=followers'
+
+
